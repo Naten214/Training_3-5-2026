@@ -19,9 +19,9 @@ jobs:
 
       - name: Check HTML file exists
         run: |
-          if [ -f index.html ]; then
-            echo "index.html found! ✅"
+          if [ -f app.py ]; then
+            echo "app.py found! ✅"
           else
-            echo "index.html NOT found! ❌"
+            echo "app.py NOT found! ❌"
             exit 1
           fi
