@@ -1,0 +1,81 @@
+####Creatin a resource group
+
+az group create --name Demo 
+-- location "eastus"
+
+az acr create `
+--resource-group 20251229-PWC-Azure ` 
+--name "natedemoacr" `
+--location eastus `
+--sku Basi
+
+az acr create `
+--resource-group 20251229-PWC-Azure `
+--name natedemoacr2 `
+--location eastus `
+--sku Basic 
+
+az acr create `
+--resource-group 20251229-PWC-Azure `
+--name natedemo3 `  
+--location eastus `
+--sku Basic 
+
+Docker build -t demo1 .
+docker tag demo1 natedemo5.azurecr.io 
+
+
+
+docker tag demo1 natedemo5.azurecr.io/demo1:v1
+docker push natedemo5.azurecr.io/demo1:v1
+
+
+ACI -
+
+Serverless, fast way to run your images...
+
+
+
+az acr create `
+--resource-group 20251229-PWC-Azure `
+--name --- `
+--location --`
+--sku Basic 
+
+az container create `
+--resource-group 20251229-PWC-Azure `
+--name natedemo5container `
+--image natedemo5.azurecr.io/demo1:v2 `
+--registry-username $ACR_USERNAME `
+--registry-password $ACR_PASSWORD `
+--restart-policy Never ` 
+--os-type Linux
+
+
+
+
+az containerapp env create `
+--name natecontainerapp `
+--resource-group 20251229-PWC-Azure `
+--location eastus
+
+
+az containerapp create `
+--name natecontainerapp `
+--resource-group 20251229-PWC-Azure `
+--environment natecontainerapp `
+--image natedemo5.azurecr.io/demo1:v2 `
+--registry-server natedemo5.azurecr.io `
+--registry-username $ACR_USERNAME `
+--registry-password $ACR_PASSWORD `
+--cpu 0.5 `
+--memory 1.0Gi `
+--restart-policy Never
+
+
+az aks create --resource-group 20251229-PWC-Azure --name myAKSCluster --node-count 1 --generate-ssh-keys --attach-acr natedemo5
+```
+
+---
+
+az aks create --resource-group 20251229-PWC-Azure --name myAKSCluster --node-count 1 --generate-ssh-keys --attach-acr natedemo5
